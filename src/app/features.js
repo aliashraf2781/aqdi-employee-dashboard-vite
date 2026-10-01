@@ -7,6 +7,7 @@ import { realtimeOrdersFeature } from '@/features/realtime-orders/manifest';
 import { reportsFeature } from '@/features/reports/manifest';
 import { returnOrdersFeature } from '@/features/return-orders/manifest';
 import { settingsFeature } from '@/features/settings/manifest';
+import { usersFeature } from '@/features/users/manifest';
 
 /**
  * The registry. Sidebar order = array order. To add a feature: create its
@@ -22,4 +23,5 @@ export const features = [
   settingsFeature,
   ordersFeature,
   invoicesFeature,
+  usersFeature,
 ];

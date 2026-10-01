@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 
-/** Returns `value` only after it has stopped changing for `delayMs` (e.g. for search boxes). */
-export function useDebouncedValue(value, delayMs) {
+const DEFAULT_DELAY_MS = 500;
+
+/** Returns `value` only after it stopped changing for `delay` ms (search boxes). */
+export function useDebouncedValue(value, delay = DEFAULT_DELAY_MS) {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebounced(value), delayMs);
+    const timer = setTimeout(() => setDebounced(value), delay);
     return () => clearTimeout(timer);
-  }, [value, delayMs]);
+  }, [value, delay]);
 
   return debounced;
 }

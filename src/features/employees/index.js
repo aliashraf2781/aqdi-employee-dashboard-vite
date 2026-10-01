@@ -1,0 +1,1 @@
+export { employeesFeature } from './manifest';
