@@ -46,6 +46,34 @@ describe('OrdersPage', () => {
     await page.unmount();
   });
 
+  it('opens the details page when a row is clicked', async () => {
+    const page = await renderPage(<OrdersPage />, {
+      path: '/home/orders',
+      url: '/home/orders',
+      extraRoutes: [{ path: '/home/orders/:id', element: <p>details of an order</p> }],
+    });
+    await page.settle();
+
+    const row = [...page.container.querySelectorAll('tbody tr')].find((node) => node.textContent.includes('AQ-1008'));
+    await page.click(row);
+
+    expect(page.container.textContent).toBe('details of an order');
+    await page.unmount();
+  });
+
+  it('selects rows and offers batch printing', async () => {
+    const page = await renderPage(<OrdersPage />, { path: '/home/orders', url: '/home/orders' });
+    await page.settle();
+
+    await page.click(page.container.querySelector('tbody [role="checkbox"]'));
+    expect(page.container.textContent).toContain('عقد محدد');
+    expect(findButton(page.container, 'طباعة المحدد')).not.toBeNull();
+
+    await page.click(findButton(page.container, 'إلغاء التحديد'));
+    expect(page.container.textContent).not.toContain('عقد محدد');
+    await page.unmount();
+  });
+
   it('sends the search text to the api after a pause', async () => {
     vi.useFakeTimers();
     const page = await renderPage(<OrdersPage />, { path: '/home/orders', url: '/home/orders' });

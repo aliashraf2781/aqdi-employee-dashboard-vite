@@ -15,7 +15,7 @@ export function signInAsAdmin() {
  * Renders a page inside the router and query providers the app uses.
  * Returns { container, click, type, unmount }. `path` is the route pattern, `url` the address to open.
  */
-export async function renderPage(element, { path = '/', url = '/' } = {}) {
+export async function renderPage(element, { path = '/', url = '/', extraRoutes = [] } = {}) {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: 0 } } });
   const container = document.createElement('div');
   document.body.appendChild(container);
@@ -27,6 +27,9 @@ export async function renderPage(element, { path = '/', url = '/' } = {}) {
         <MemoryRouter initialEntries={[url]}>
           <Routes>
             <Route path={path} element={element} />
+            {extraRoutes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
           </Routes>
         </MemoryRouter>
       </QueryClientProvider>,
@@ -59,13 +62,18 @@ export async function openMenu(trigger) {
   });
 }
 
-/** Sets the value of an input/textarea the way React expects (so onChange fires). */
+/** Sets the value of an input, textarea or select the way React expects (so onChange fires). */
 export async function typeInto(node, value) {
-  const prototype = node instanceof window.HTMLTextAreaElement ? window.HTMLTextAreaElement.prototype : window.HTMLInputElement.prototype;
-  const setValue = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+  const prototypes = [
+    [window.HTMLTextAreaElement, 'input'],
+    [window.HTMLSelectElement, 'change'],
+    [window.HTMLInputElement, 'input'],
+  ];
+  const [Element, eventName] = prototypes.find(([Type]) => node instanceof Type);
+  const setValue = Object.getOwnPropertyDescriptor(Element.prototype, 'value').set;
   await act(async () => {
     setValue.call(node, value);
-    node.dispatchEvent(new Event('input', { bubbles: true }));
+    node.dispatchEvent(new Event(eventName, { bubbles: true }));
   });
 }
 
