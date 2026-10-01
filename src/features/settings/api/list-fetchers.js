@@ -1,16 +1,19 @@
 import { apiClient } from '@/shared/lib/api-client';
-import { pickItems, pickLastPage } from '@/features/settings/lib/list-response';
+import { pickItems, pickLastPage, pickTotal } from '@/shared/lib/list-response';
 import { AUDIENCES, CONTRACT_TYPES } from '@/features/settings/lib/labels';
 
 const BIG_PAGE_SIZE = 100;
 
-/** Result shape every CRUD list fetcher returns: `{ rows, lastPage }`. */
-const toListResult = (body) => ({ rows: pickItems(body), lastPage: pickLastPage(body) });
+/** Result shape every CRUD list fetcher returns: `{ rows, lastPage, total }`. */
+const toListResult = (body) => {
+  const rows = pickItems(body);
+  return { rows, lastPage: pickLastPage(body), total: pickTotal(body) ?? rows.length };
+};
 
 /** A single, non-paginated list. */
 export async function fetchPlainList(path, params) {
   const { data } = await apiClient.get(path, { params });
-  return { rows: pickItems(data), lastPage: null };
+  return { ...toListResult(data), lastPage: null };
 }
 
 /** A paginated list; extra `params` (search, filters) are sent as query string. */
@@ -30,7 +33,7 @@ export async function fetchBothContractTypes(path) {
   const rows = bodies.flatMap((body, index) =>
     pickItems(body).map((item) => ({ ...item, contract_type: item.contract_type || types[index] })),
   );
-  return { rows, lastPage: null };
+  return { rows, lastPage: null, total: rows.length };
 }
 
 /** Client, employee and property rows come from three separate URLs: merge them. */
@@ -42,5 +45,5 @@ export async function fetchAllAudiences(buildPath) {
   const rows = bodies.flatMap((body, index) =>
     pickItems(body).map((item) => ({ ...item, type: item.type || audiences[index] })),
   );
-  return { rows, lastPage: null };
+  return { rows, lastPage: null, total: rows.length };
 }

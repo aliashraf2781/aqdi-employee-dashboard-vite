@@ -1,4 +1,4 @@
-import { toNumberOrNull } from '@/features/settings/schemas/common-schemas';
+import { toNumberOrNull } from '@/shared/lib/numbers';
 
 export const KNOWN_PERIODS = [
   { value: 'شهري', months: 1 },

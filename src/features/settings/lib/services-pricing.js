@@ -1,4 +1,4 @@
-import { toNumberOrNull } from '@/features/settings/schemas/common-schemas';
+import { toNumberOrNull } from '@/shared/lib/numbers';
 
 /** Form values -> request body. English name and price are only sent when filled. */
 export function buildServicesPricingPayload(values) {

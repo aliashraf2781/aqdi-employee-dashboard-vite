@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildTenantRolePayload, stripHtml, tenantRoleToFormValues } from './tenant-role';
+import { buildTenantRolePayload, tenantRoleToFormValues } from './tenant-role';
 
 const values = {
   text_of_reason: ' غرامة ',
@@ -10,10 +10,6 @@ const values = {
 };
 
 describe('tenant role helpers', () => {
-  it('strips html', () => {
-    expect(stripHtml('<p>مرحبا <b>بك</b></p>')).toBe('مرحبا بك');
-  });
-
   it('builds the payload with an input field', () => {
     expect(buildTenantRolePayload(values)).toEqual({
       text_of_reason: 'غرامة',

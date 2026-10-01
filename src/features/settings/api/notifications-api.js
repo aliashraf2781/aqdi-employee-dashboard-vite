@@ -1,5 +1,5 @@
 import { apiClient } from '@/shared/lib/api-client';
-import { pickItems } from '@/features/settings/lib/list-response';
+import { pickItems } from '@/shared/lib/list-response';
 import { buildNotificationRequest } from '@/features/settings/lib/notification-targets';
 
 const RECIPIENT_LIMIT = 50;

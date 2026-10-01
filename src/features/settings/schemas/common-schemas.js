@@ -15,10 +15,3 @@ export const optionalNonNegativeNumber = (message) =>
     .string()
     .trim()
     .refine((value) => value === '' || (Number.isFinite(Number(value)) && Number(value) >= 0), message);
-
-/** Converts '' to null and numeric text to a number, for request bodies. */
-export function toNumberOrNull(value) {
-  if (value === '' || value == null) return null;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
-}

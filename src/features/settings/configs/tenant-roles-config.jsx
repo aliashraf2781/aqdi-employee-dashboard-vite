@@ -3,12 +3,8 @@ import { PERMISSION_SECTIONS } from '@/features/permissions';
 import { Badge } from '@/shared/components/badge';
 import { fetchPagedList } from '@/features/settings/api/list-fetchers';
 import { createCrudApi } from '@/features/settings/api/crud-api';
-import {
-  INPUT_FIELD_TYPES,
-  buildTenantRolePayload,
-  stripHtml,
-  tenantRoleToFormValues,
-} from '@/features/settings/lib/tenant-role';
+import { stripHtml } from '@/shared/lib/html';
+import { INPUT_FIELD_TYPES, buildTenantRolePayload, tenantRoleToFormValues } from '@/features/settings/lib/tenant-role';
 
 const TENANT_ROLES_PATH = '/admin/tenant-roles';
 const TENANT_ROLES_PER_PAGE = 20;

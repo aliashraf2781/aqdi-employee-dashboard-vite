@@ -1,4 +1,4 @@
-import { toBoolean, unwrapSettingsRecord } from '@/features/settings/lib/settings-record';
+import { toBoolean, unwrapSettingsRecord } from '@/shared/lib/settings-record';
 
 export const APP_STATUS_QUERY_KEY = 'app-status';
 export const APP_STATUS_PATH = '/admin/settings/app-status';

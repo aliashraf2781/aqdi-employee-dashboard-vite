@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { optionalNonNegativeNumber, requiredText, toNumberOrNull } from './common-schemas';
+import { optionalNonNegativeNumber, requiredText } from './common-schemas';
 
 describe('requiredText', () => {
   it('rejects blank text', () => {
@@ -19,13 +19,5 @@ describe('optionalNonNegativeNumber', () => {
   it('rejects negatives and text', () => {
     expect(schema.safeParse('-1').success).toBe(false);
     expect(schema.safeParse('abc').success).toBe(false);
-  });
-});
-
-describe('toNumberOrNull', () => {
-  it('maps empty to null and text to number', () => {
-    expect(toNumberOrNull('')).toBeNull();
-    expect(toNumberOrNull('7')).toBe(7);
-    expect(toNumberOrNull('x')).toBeNull();
   });
 });

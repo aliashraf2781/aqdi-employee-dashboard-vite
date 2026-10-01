@@ -1,17 +1,9 @@
-const HTML_TAGS = /<[^>]*>/g;
+import { stripHtml } from '@/shared/lib/html';
 
 export const INPUT_FIELD_TYPES = [
   { value: 'text', label: 'نص (text)' },
   { value: 'number', label: 'رقم (number)' },
 ];
-
-/** HTML -> plain text, used to detect an "empty" editor and to preview descriptions. */
-export function stripHtml(html) {
-  return String(html || '')
-    .replace(HTML_TAGS, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 export function tenantRoleToFormValues(role) {
   return {

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '@/shared/lib/api-client';
-import { pickItems } from '@/features/settings/lib/list-response';
+import { pickItems } from '@/shared/lib/list-response';
 import { getAudienceSections, parseCustomerMessagesAll, toSelectOptions } from '@/features/settings/lib/customer-messages';
 
 const SECTIONS_QUERY_KEY = 'message-alert-sections';

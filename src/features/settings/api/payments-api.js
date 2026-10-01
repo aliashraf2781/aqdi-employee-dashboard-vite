@@ -1,5 +1,5 @@
 import { apiClient } from '@/shared/lib/api-client';
-import { pickItems, pickLastPage, pickTotal } from '@/features/settings/lib/list-response';
+import { pickItems, pickLastPage, pickTotal } from '@/shared/lib/list-response';
 
 const PAYMENTS_PER_PAGE = 20;
 
