@@ -42,6 +42,14 @@
   --color-whatsapp: 37 211 102;
   --color-whatsapp-hover: 30 190 87;
 
+  /* Categorical chart series (bars, funnel stages). Same order everywhere. */
+  --color-chart-1: 12 96 85;
+  --color-chart-2: 30 64 175;
+  --color-chart-3: 202 138 4;
+  --color-chart-4: 220 38 38;
+  --color-chart-5: 124 58 237;
+  --color-chart-6: 13 148 136;
+
   --radius: 0.5rem;
   --radius-card: 1.5rem;
   --shadow-card: 0 4px 24px rgb(var(--color-primary-hover) / 0.08);
@@ -66,4 +74,11 @@
 
   --color-sidebar: 8 37 31;
   --color-sidebar-hover: 18 68 54;
+
+  --color-chart-1: 52 211 153;
+  --color-chart-2: 96 165 250;
+  --color-chart-3: 250 204 21;
+  --color-chart-4: 248 113 113;
+  --color-chart-5: 167 139 250;
+  --color-chart-6: 45 212 191;
 }
