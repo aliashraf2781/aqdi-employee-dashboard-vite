@@ -1,0 +1,1 @@
+export { invoicesFeature } from './manifest';

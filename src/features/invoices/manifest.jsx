@@ -1,10 +1,10 @@
 import { ReceiptText } from 'lucide-react';
-import { ComingSoonPage } from '@/shared/components/coming-soon-page';
+import { lazyRoute } from '@/shared/lib/lazy-route';
 
 /**
  * Everything the app needs to know about this feature: where it lives, how it
  * appears in the sidebar, who may open it and which pages it has.
- * Replace the placeholder route with the real (lazy) pages.
+ * Invoices have no permission section in the source app, so every signed-in user may open it.
  */
 export const invoicesFeature = {
   id: 'invoices',
@@ -13,5 +13,5 @@ export const invoicesFeature = {
   icon: ReceiptText,
   section: null,
   navGroup: 'secondary',
-  routes: [{ index: true, element: <ComingSoonPage title="الفواتير" /> }],
+  routes: [{ index: true, ...lazyRoute(() => import('./pages/invoices-page'), 'InvoicesPage') }],
 };
