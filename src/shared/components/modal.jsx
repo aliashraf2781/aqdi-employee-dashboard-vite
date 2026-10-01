@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/shared/lib/cn';
 
 const panelVariants = cva(
-  'fixed left-1/2 top-1/2 z-50 w-full -translate-x-1/2 -translate-y-1/2 rounded-card bg-surface p-6 shadow-card focus:outline-none',
+  'fixed left-1/2 top-1/2 z-50 max-h-dialog w-full -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-card bg-surface p-6 shadow-card focus:outline-none',
   {
     variants: { size: { sm: 'max-w-dialog-sm', md: 'max-w-dialog-md', lg: 'max-w-dialog-lg' } },
     defaultVariants: { size: 'md' },

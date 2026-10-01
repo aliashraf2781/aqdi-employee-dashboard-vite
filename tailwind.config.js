@@ -57,6 +57,7 @@ export default {
       boxShadow: {
         card: 'var(--shadow-card)',
       },
+      maxHeight: { dialog: '90vh' },
       maxWidth: {
         'dialog-sm': '24rem',
         'dialog-md': '32rem',
