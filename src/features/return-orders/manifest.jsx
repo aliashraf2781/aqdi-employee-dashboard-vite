@@ -1,12 +1,12 @@
 import { RotateCcw } from 'lucide-react';
-import { ComingSoonPage } from '@/shared/components/coming-soon-page';
 import { useReturnedOrdersCount } from '@/features/orders';
 import { PERMISSION_SECTIONS } from '@/features/permissions';
+import { lazyRoute } from '@/shared/lib/lazy-route';
 
 /**
  * Everything the app needs to know about this feature: where it lives, how it
  * appears in the sidebar, who may open it and which pages it has.
- * Replace the placeholder route with the real (lazy) pages.
+ * Order details are opened in the orders feature (/home/orders/:id).
  */
 export const returnOrdersFeature = {
   id: 'return-orders',
@@ -16,5 +16,5 @@ export const returnOrdersFeature = {
   section: PERMISSION_SECTIONS.returned_request,
   navGroup: 'main',
   useBadgeCount: useReturnedOrdersCount,
-  routes: [{ index: true, element: <ComingSoonPage title="طلبات الاسترجاع" /> }],
+  routes: [{ index: true, ...lazyRoute(() => import('./pages/return-orders-page'), 'ReturnOrdersPage') }],
 };
