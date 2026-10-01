@@ -69,7 +69,11 @@ Each agent ports one feature following the `clients` pattern and the rules above
 | C | `reports` (analysis tabs, xlsx/pdf export), `invoices` |
 | D | `content`, `marketing-and-content`, `real-estates` (TipTap editors, FormData uploads) |
 
-## Blockers
+## Status
+
+All phases are done. Every page of the source app is ported. The remaining gaps are listed in the README under "Known follow-ups".
+
+## Original blockers
 
 - The GitHub integration cannot create repositories (403). The empty repo must be created by its owner, then added to the session.
 - Out of scope in the first pass: Firebase push notifications, server-only routes (`src/app/api`, middleware). They need a Vite-side replacement decision.

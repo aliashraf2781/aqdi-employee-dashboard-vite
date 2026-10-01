@@ -30,7 +30,23 @@ src/
 - **Forms:** zod schema in `schemas/`, react-hook-form in the component.
 - Features import each other only through their `index.js`.
 
-See [docs/port-plan.md](docs/port-plan.md) for the phased migration plan.
+## Features
+
+`dashboard`, `clients`, `orders`, `realtime-orders`, `return-orders`, `employees` (roles and employees), `users`, `reports`, `invoices`, `marketing` (marketing, content, SEO), `real-estates`, `settings`, `contract-settings`, plus `auth` and `permissions`.
+
+To add a feature: create `features/<name>/manifest.jsx` (path, label, icon, permission section, routes) and add one line to `src/app/features.js`. The sidebar entry and the route guard are generated from the manifest.
+
+Read [docs/CONVENTIONS.md](docs/CONVENTIONS.md) before contributing and see [docs/port-plan.md](docs/port-plan.md) for how the port was done.
+
+## Known follow-ups
+
+- Firebase push notifications and the SEO-crawl live progress are no-op hooks (`TODO(firebase)`).
+- The dashboard notification panel (new orders waiting to be received) is not ported; it needs the orders `receive contract` mutation.
+- Several image/file upload controls overlap (`ui/image-field`, `ui/file-upload-field`, `ui/file-field`, employees `ProfileImageField`). Merge them into one.
+- `KpiCard` and `StatCard` are two tile styles; pick one if the design allows.
+- FAQs exist in both `marketing` and `settings`; the SEO panel for FAQs from the old settings page is missing.
+- Nothing was verified against the live API. Check the login response shape (`data.token`) and CORS first.
+
 
 ## Auth note
 
