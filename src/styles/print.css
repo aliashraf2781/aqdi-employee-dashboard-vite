@@ -1,0 +1,14 @@
+/* Used by shared/lib/print-element.js: only the cloned #print-root is printed. */
+#print-root {
+  display: none;
+}
+
+@media print {
+  body.is-printing > *:not(#print-root) {
+    display: none !important;
+  }
+
+  body.is-printing > #print-root {
+    display: block;
+  }
+}

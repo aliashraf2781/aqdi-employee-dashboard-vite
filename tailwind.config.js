@@ -34,6 +34,14 @@ export default {
         warning: { DEFAULT: token('warning'), soft: token('warning-soft') },
         danger: { DEFAULT: token('danger'), soft: token('danger-soft') },
         notice: token('notice'),
+        chart: {
+          1: token('chart-1'),
+          2: token('chart-2'),
+          3: token('chart-3'),
+          4: token('chart-4'),
+          5: token('chart-5'),
+          6: token('chart-6'),
+        },
         neutral: { DEFAULT: token('neutral'), soft: token('neutral-soft') },
         sidebar: {
           DEFAULT: token('sidebar'),
@@ -51,6 +59,7 @@ export default {
       boxShadow: {
         card: 'var(--shadow-card)',
       },
+      minWidth: { 'table-sm': '32rem', 'table-md': '40rem', 'table-lg': '64rem' },
       maxWidth: {
         'dialog-sm': '24rem',
         'dialog-md': '32rem',
