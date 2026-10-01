@@ -1,4 +1,5 @@
 import { clientsFeature } from '@/features/clients/manifest';
+import { contractSettingsFeature } from '@/features/contract-settings/manifest';
 import { employeesFeature } from '@/features/employees/manifest';
 import { invoicesFeature } from '@/features/invoices/manifest';
 import { marketingFeature } from '@/features/marketing/manifest';
@@ -20,6 +21,7 @@ export const features = [
   marketingFeature,
   reportsFeature,
   settingsFeature,
+  contractSettingsFeature,
   ordersFeature,
   invoicesFeature,
 ];
