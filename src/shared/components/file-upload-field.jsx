@@ -60,6 +60,7 @@ export function FileUploadField({
   file,
   existingUrl = '',
   removed = false,
+  allowRemove = true,
   onPick,
   onRemove,
 }) {
@@ -92,13 +93,21 @@ export function FileUploadField({
                 تغيير
                 <input type="file" accept={acceptTypes} className="hidden" onChange={handleChange} />
               </label>
-              <Button type="button" variant="ghost" size="sm" className="text-danger" onClick={() => {
-                  showFile(null);
-                  onRemove();
-                }}>
-                <Trash2 className="size-4" />
-                حذف
-              </Button>
+              {allowRemove && (
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  className="text-danger"
+                  onClick={() => {
+                    showFile(null);
+                    onRemove();
+                  }}
+                >
+                  <Trash2 className="size-4" />
+                  حذف
+                </Button>
+              )}
             </div>
           </div>
         ) : (
