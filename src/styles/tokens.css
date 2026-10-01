@@ -63,6 +63,14 @@
   --color-refunded: 85 112 134;
   --color-refunded-soft: 238 242 246;
 
+  /* Printed contracts are always dark-on-white, even in dark mode (not overridden in .dark) */
+  --color-print-ink: 0 0 0;
+  --color-print-muted: 105 105 105;
+  --color-print-surface: 245 245 245;
+  --color-print-label: 248 248 255;
+  --color-print-border: 220 220 220;
+  --color-print-image-border: 211 211 211;
+
   --radius: 0.5rem;
   --radius-card: 1.5rem;
   --shadow-card: 0 4px 24px rgb(var(--color-primary-hover) / 0.08);

@@ -1,5 +1,5 @@
 // Fails when src/ contains a raw color or a Tailwind arbitrary value.
-// Raw colors belong in src/styles/tokens.css only.
+// Raw colors belong in src/styles/tokens.css only. Test files are skipped (they may assert on colors).
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import path from 'node:path';
 
@@ -20,7 +20,7 @@ function* walk(dir) {
   for (const entry of readdirSync(dir)) {
     const full = path.join(dir, entry);
     if (statSync(full).isDirectory()) yield* walk(full);
-    else if (/\.(jsx?|css)$/.test(entry)) yield full;
+    else if (/\.(jsx?|css)$/.test(entry) && !/\.test\.jsx?$/.test(entry)) yield full;
   }
 }
 
