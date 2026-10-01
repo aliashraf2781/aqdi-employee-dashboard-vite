@@ -11,13 +11,7 @@
  *   (owner / deed lived on contract_summary + root)
  */
 
-function pick(...values) {
-  for (const value of values) {
-    if (value == null || value === '') continue;
-    return value;
-  }
-  return null;
-}
+import { pick } from './pick';
 
 function isNonEmptyObject(value) {
   return Boolean(value) && typeof value === 'object' && !Array.isArray(value) && Object.keys(value).length > 0;
