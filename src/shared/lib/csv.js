@@ -1,7 +1,9 @@
 const UTF8_BOM = '﻿';
 
 function toCsvCell(value) {
-  const text = String(value ?? '').replace(/"/g, '""').trim();
+  const text = String(value ?? '')
+    .replace(/"/g, '""')
+    .trim();
   return `"${text}"`;
 }
 

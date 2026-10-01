@@ -3,7 +3,10 @@ import { buildCsv } from './csv';
 
 describe('buildCsv', () => {
   it('quotes every cell and escapes inner quotes', () => {
-    const csv = buildCsv([['اسم', 'a "b"'], [1, null]]);
+    const csv = buildCsv([
+      ['اسم', 'a "b"'],
+      [1, null],
+    ]);
     expect(csv).toBe('﻿"اسم","a ""b"""\n"1",""');
   });
 });
