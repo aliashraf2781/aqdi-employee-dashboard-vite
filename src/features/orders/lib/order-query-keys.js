@@ -75,3 +75,14 @@ export function invalidateContractStatusCaches(queryClient) {
   invalidate(queryClient, [CONTRACT_STATUSES_ACTIVE_QUERY_KEY]);
   invalidateOrdersCaches(queryClient);
 }
+
+export const DRAFT_STATUSES_QUERY_KEY = 'draft-contract-statuses-active';
+
+/** Refresh draft lists and counters, plus one order's detail cache. */
+export function invalidateDraftOrdersCaches(queryClient, { queryKey, orderId } = {}) {
+  ['draftContracts', 'draftCompletedOrders', 'draft-orders-all-total', 'draft-order-status-count'].forEach((root) =>
+    invalidate(queryClient, [root]),
+  );
+  invalidateSingleOrder(queryClient, orderId);
+  invalidate(queryClient, queryKey);
+}

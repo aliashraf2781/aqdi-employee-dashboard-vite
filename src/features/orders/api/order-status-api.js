@@ -44,3 +44,10 @@ export async function postReturnContractStatusForOrder(order, orderId, accept = 
   }
   throw lastError ?? new Error('تعذر تحديث حالة الاسترجاع');
 }
+
+/** POST /admin/orders/{id}/status with a ready-made body (for statuses that need their own fields). */
+export async function postOrderStatusBody(orderId, body) {
+  if (orderId == null || orderId === '') throw new Error('تعذر تحديد الطلب');
+  const { data } = await apiClient.post(orderStatusUrl(orderId), body);
+  return data;
+}

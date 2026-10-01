@@ -76,3 +76,9 @@ export function getOrderDraftStatusFromDetail(orderData = {}) {
 export function getOrderDraftContractNumber(orderData = {}) {
   return orderData.draft_contract_number ?? orderData.contract_summary?.draft_contract_number ?? '';
 }
+
+/** The draft statuses endpoint answers in several shapes. */
+export function extractDraftStatusItems(body) {
+  const candidates = [body, body?.data?.items, body?.data?.data?.items, body?.items, body?.data];
+  return candidates.find(Array.isArray) ?? [];
+}
