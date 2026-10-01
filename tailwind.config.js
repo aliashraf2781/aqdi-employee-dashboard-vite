@@ -34,6 +34,7 @@ export default {
         warning: { DEFAULT: token('warning'), soft: token('warning-soft') },
         danger: { DEFAULT: token('danger'), soft: token('danger-soft') },
         notice: token('notice'),
+        whatsapp: { DEFAULT: token('whatsapp'), hover: token('whatsapp-hover') },
         neutral: { DEFAULT: token('neutral'), soft: token('neutral-soft') },
         sidebar: {
           DEFAULT: token('sidebar'),
