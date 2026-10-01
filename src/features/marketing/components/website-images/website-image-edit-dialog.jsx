@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import { FileUploadField } from '@/shared/components/file-upload-field';
 import { FormDialog } from '@/shared/components/form-dialog';
@@ -16,6 +16,8 @@ import { websiteImageSchema } from '@/features/marketing/schemas/website-image-s
  */
 export function WebsiteImageEditDialog({ open, onOpenChange, item, canEdit, onSubmit }) {
   const [imageFile, setImageFile] = useState(null);
+  // Stable reference: FormDialog resets the form whenever `defaultValues` changes.
+  const defaultValues = useMemo(() => websiteImageToForm(item), [item]);
 
   const handlePick = (file) => {
     const message = getFileTypeError(file, false);
@@ -38,7 +40,7 @@ export function WebsiteImageEditDialog({ open, onOpenChange, item, canEdit, onSu
       title={`تحرير: ${item.label_ar || item.key}`}
       description={`المفتاح: ${item.key}`}
       schema={websiteImageSchema}
-      defaultValues={websiteImageToForm(item)}
+      defaultValues={defaultValues}
       onSubmit={handleSubmit}
       submitLabel={canEdit ? 'حفظ' : 'إغلاق'}
       size="lg"

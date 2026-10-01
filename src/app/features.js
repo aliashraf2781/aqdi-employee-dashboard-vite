@@ -1,7 +1,7 @@
 import { clientsFeature } from '@/features/clients/manifest';
 import { employeesFeature } from '@/features/employees/manifest';
 import { invoicesFeature } from '@/features/invoices/manifest';
-import { marketingFeature } from '@/features/marketing/manifest';
+import { contentRedirectFeature, marketingFeature } from '@/features/marketing';
 import { ordersFeature } from '@/features/orders/manifest';
 import { realEstatesFeature } from '@/features/real-estates/manifest';
 import { realtimeOrdersFeature } from '@/features/realtime-orders/manifest';
@@ -19,6 +19,7 @@ export const features = [
   returnOrdersFeature,
   employeesFeature,
   marketingFeature,
+  contentRedirectFeature,
   reportsFeature,
   settingsFeature,
   ordersFeature,
