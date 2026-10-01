@@ -36,7 +36,9 @@
 
   --color-sidebar: 13 59 49;
   --color-sidebar-hover: 18 68 54;
+  --color-sidebar-dark: 8 37 31;
   --color-sidebar-foreground: 232 241 238;
+  --color-notice: 232 146 58;
 
   --radius: 0.5rem;
   --radius-card: 1.5rem;

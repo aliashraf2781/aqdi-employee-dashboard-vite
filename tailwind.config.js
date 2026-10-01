@@ -11,6 +11,7 @@ export default {
   darkMode: ['class'],
   content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
+    screens: { sm: '640px', md: '768px', lg: '1024px', desktop: '1201px', xl: '1280px', '2xl': '1536px' },
     extend: {
       colors: {
         background: token('background'),
@@ -32,10 +33,12 @@ export default {
         success: { DEFAULT: token('success'), soft: token('success-soft') },
         warning: { DEFAULT: token('warning'), soft: token('warning-soft') },
         danger: { DEFAULT: token('danger'), soft: token('danger-soft') },
+        notice: token('notice'),
         neutral: { DEFAULT: token('neutral'), soft: token('neutral-soft') },
         sidebar: {
           DEFAULT: token('sidebar'),
           hover: token('sidebar-hover'),
+          dark: token('sidebar-dark'),
           foreground: token('sidebar-foreground'),
         },
       },

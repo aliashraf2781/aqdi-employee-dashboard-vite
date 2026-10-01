@@ -5,7 +5,10 @@ import { Providers } from '@/app/providers';
 import { router } from '@/app/router';
 import { useAuthStore } from '@/features/auth';
 import { configureApiAuth } from '@/shared/lib/api-client';
+import { initTheme } from '@/shared/hooks/use-theme';
 import '@/styles/index.css';
+
+initTheme();
 
 // Wire the API client to the auth store once, here, so shared code stays feature-free.
 configureApiAuth({

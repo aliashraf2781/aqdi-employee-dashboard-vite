@@ -1,0 +1,18 @@
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import { PageLoader } from '@/shared/components/page-loader';
+import { Sidebar } from '@/app/layout/sidebar';
+
+/** Sidebar + scrollable content area for every /home page. */
+export function AppShell() {
+  return (
+    <div className="flex bg-background">
+      <Sidebar />
+      <main className="h-screen min-w-0 flex-1 overflow-y-auto p-8">
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </div>
+  );
+}
