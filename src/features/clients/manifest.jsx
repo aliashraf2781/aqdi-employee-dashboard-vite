@@ -1,11 +1,29 @@
 import { Users2 } from 'lucide-react';
-import { ComingSoonPage } from '@/shared/components/coming-soon-page';
+import { Outlet } from 'react-router-dom';
+import { PERMISSION_SECTIONS, RequirePermission } from '@/features/permissions';
+import { lazyRoute } from '@/shared/lib/lazy-route';
 
 /**
- * Everything the app needs to know about this feature: where it lives, how it
- * appears in the sidebar, who may open it and which pages it has.
- * Replace the placeholder route with the real (lazy) pages.
+ * The list is open to any signed-in user. A client's file, properties and discount
+ * were `/home/users/:id` in the old app, guarded by the `users` permission, so those
+ * routes sit under a layout route that keeps that guard.
  */
+const clientFileRoutes = {
+  element: (
+    <RequirePermission section={PERMISSION_SECTIONS.users}>
+      <Outlet />
+    </RequirePermission>
+  ),
+  children: [
+    { path: ':clientId', ...lazyRoute(() => import('./pages/client-details-page'), 'ClientDetailsPage') },
+    {
+      path: ':clientId/properties',
+      ...lazyRoute(() => import('./pages/client-properties-page'), 'ClientPropertiesPage'),
+    },
+    { path: ':clientId/discount', ...lazyRoute(() => import('./pages/client-discount-page'), 'ClientDiscountPage') },
+  ],
+};
+
 export const clientsFeature = {
   id: 'clients',
   path: 'clients',
@@ -13,5 +31,5 @@ export const clientsFeature = {
   icon: Users2,
   section: null,
   navGroup: 'main',
-  routes: [{ index: true, element: <ComingSoonPage title="العملاء" /> }],
+  routes: [{ index: true, ...lazyRoute(() => import('./pages/clients-page'), 'ClientsPage') }, clientFileRoutes],
 };
