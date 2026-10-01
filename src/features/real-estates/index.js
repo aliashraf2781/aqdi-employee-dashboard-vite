@@ -1,0 +1,1 @@
+export { realEstatesFeature } from './manifest';

@@ -3,6 +3,7 @@ import { employeesFeature } from '@/features/employees/manifest';
 import { invoicesFeature } from '@/features/invoices/manifest';
 import { marketingFeature } from '@/features/marketing/manifest';
 import { ordersFeature } from '@/features/orders/manifest';
+import { realEstatesFeature } from '@/features/real-estates/manifest';
 import { realtimeOrdersFeature } from '@/features/realtime-orders/manifest';
 import { reportsFeature } from '@/features/reports/manifest';
 import { returnOrdersFeature } from '@/features/return-orders/manifest';
@@ -22,4 +23,5 @@ export const features = [
   settingsFeature,
   ordersFeature,
   invoicesFeature,
+  realEstatesFeature,
 ];
