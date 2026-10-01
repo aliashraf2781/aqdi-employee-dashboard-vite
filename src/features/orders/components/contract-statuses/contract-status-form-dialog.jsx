@@ -7,7 +7,7 @@ import { useSaveContractStatus } from '../../hooks/use-save-contract-status';
 import {
   buildContractStatusPayload,
   contractStatusToForm,
-  EMPTY_CONTRACT_STATUS_FORM,
+  createEmptyContractStatusForm,
 } from '../../lib/contract-status-form';
 import { contractStatusSchema } from '../../schemas/contract-status-schema';
 
@@ -15,7 +15,7 @@ import { contractStatusSchema } from '../../schemas/contract-status-schema';
 export function ContractStatusFormDialog({ open, onOpenChange, status }) {
   const save = useSaveContractStatus({ onSuccess: () => onOpenChange(false) });
   // FormDialog resets the form when this object changes, so it must keep its identity between renders.
-  const defaultValues = useMemo(() => (status ? contractStatusToForm(status) : EMPTY_CONTRACT_STATUS_FORM), [status]);
+  const defaultValues = useMemo(() => (status ? contractStatusToForm(status) : createEmptyContractStatusForm()), [status]);
 
   return (
     <FormDialog
