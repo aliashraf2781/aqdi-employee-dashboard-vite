@@ -35,6 +35,12 @@ export default {
         danger: { DEFAULT: token('danger'), soft: token('danger-soft') },
         notice: token('notice'),
         neutral: { DEFAULT: token('neutral'), soft: token('neutral-soft') },
+        info: { DEFAULT: token('info'), soft: token('info-soft') },
+        violet: { DEFAULT: token('violet'), soft: token('violet-soft') },
+        gold: { DEFAULT: token('gold'), soft: token('gold-soft') },
+        orange: { DEFAULT: token('orange'), soft: token('orange-soft') },
+        whatsapp: token('whatsapp'),
+        refunded: { DEFAULT: token('refunded'), soft: token('refunded-soft') },
         sidebar: {
           DEFAULT: token('sidebar'),
           hover: token('sidebar-hover'),

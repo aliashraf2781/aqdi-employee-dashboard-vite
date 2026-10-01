@@ -40,6 +40,19 @@
   --color-sidebar-foreground: 232 241 238;
   --color-notice: 232 146 58;
 
+  /* Extra accent families used by the order details screens. */
+  --color-info: 29 78 216;
+  --color-info-soft: 219 234 254;
+  --color-violet: 109 40 217;
+  --color-violet-soft: 237 233 254;
+  --color-gold: 184 134 11;
+  --color-gold-soft: 251 248 243;
+  --color-orange: 234 88 12;
+  --color-orange-soft: 255 237 213;
+  --color-whatsapp: 37 211 102;
+  --color-refunded: 85 112 134;
+  --color-refunded-soft: 238 242 246;
+
   --radius: 0.5rem;
   --radius-card: 1.5rem;
   --shadow-card: 0 4px 24px rgb(var(--color-primary-hover) / 0.08);
@@ -64,4 +77,15 @@
 
   --color-sidebar: 8 37 31;
   --color-sidebar-hover: 18 68 54;
+
+  --color-info: 147 197 253;
+  --color-info-soft: 30 41 59;
+  --color-violet: 196 181 253;
+  --color-violet-soft: 46 36 77;
+  --color-gold: 234 179 8;
+  --color-gold-soft: 38 33 20;
+  --color-orange: 251 146 60;
+  --color-orange-soft: 56 38 24;
+  --color-refunded: 148 163 184;
+  --color-refunded-soft: 30 41 59;
 }
