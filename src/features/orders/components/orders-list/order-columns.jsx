@@ -19,7 +19,6 @@ export function buildOrderColumns({ onView, onPrint }) {
       id: 'contractType',
       label: 'نوع العقد',
       hideable: false,
-      sticky: 'start',
       cell: (order) => <span className="font-bold">{order?.contract_type || '---'}</span>,
     },
     {

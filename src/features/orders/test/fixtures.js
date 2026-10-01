@@ -12,6 +12,7 @@ export const ORDER_FIXTURE = {
     employee_name: 'أحمد',
     instrument_type_key: 'electronic',
     instrument_type_trans: 'صك إلكتروني',
+    instrument_number: '5555',
   },
   step1: { instrument_number: '5555', name_real_estate: 'برج الندى', image_instrument: 'storage/deed.png' },
   step2: { street: 'الملك فهد', neighborhood: 'العليا', property_place_id: 1, property_city_id: 2, building_number: '12' },

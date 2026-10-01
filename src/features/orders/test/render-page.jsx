@@ -51,3 +51,23 @@ export function findByText(root, text, selector = '*') {
 export function findButton(root, text) {
   return [...root.querySelectorAll('button, a')].find((node) => node.textContent.includes(text)) ?? null;
 }
+
+/** Opens a Radix dropdown/menu trigger (it opens on keyboard, which works without pointer events). */
+export async function openMenu(trigger) {
+  await act(async () => {
+    trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+  });
+}
+
+/** Sets the value of an input/textarea the way React expects (so onChange fires). */
+export async function typeInto(node, value) {
+  const prototype = node instanceof window.HTMLTextAreaElement ? window.HTMLTextAreaElement.prototype : window.HTMLInputElement.prototype;
+  const setValue = Object.getOwnPropertyDescriptor(prototype, 'value').set;
+  await act(async () => {
+    setValue.call(node, value);
+    node.dispatchEvent(new Event('input', { bubbles: true }));
+  });
+}
+
+/** Waits for pending promises and timers (queries, debounced search, delayed dialogs). */
+export const wait = (ms = 30) => act(async () => { await new Promise((resolve) => setTimeout(resolve, ms)); });
