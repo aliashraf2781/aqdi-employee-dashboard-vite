@@ -1,6 +1,7 @@
 import { CreditCard } from 'lucide-react';
 import { paymentMethodLabel, paymentStatusLabel } from '../../lib/financial-display';
-import { AccentCard, Money } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { Money } from './detail-fields';
 
 /** Payment history of the contract (each payment with method, status and date). */
 export function PaymentsCard({ payments }) {

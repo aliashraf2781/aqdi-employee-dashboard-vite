@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRowSelection } from '@/shared/hooks/use-row-selection';
 import { useTablePreferences } from '@/shared/hooks/use-table-preferences';
@@ -31,7 +31,10 @@ export function useOrdersPage({ lockedFilter = null, exportFilename = 'جميع-
   const selection = useRowSelection();
   const tablePreferences = useTablePreferences({ storageKey: TABLE_STORAGE_KEY });
   const batchPrint = useBatchPrintContracts();
-  const singlePrint = usePrintOrder();
+  const { printOrder: printOrderById } = usePrintOrder();
+
+  const openOrder = useCallback((order) => navigate(String(order.id ?? order.uuid)), [navigate]);
+  const printOrder = useCallback((order) => printOrderById(order?.id), [printOrderById]);
 
   // A selection only makes sense for the rows that were on screen when it was made.
   const clearSelection = selection.clear;
@@ -73,7 +76,7 @@ export function useOrdersPage({ lockedFilter = null, exportFilename = 'جميع-
     tablePreferences,
     batchPrint,
     exporter,
-    openOrder: (order) => navigate(String(order.id ?? order.uuid)),
-    printOrder: (order) => singlePrint.printOrder(order?.id),
+    openOrder,
+    printOrder,
   };
 }

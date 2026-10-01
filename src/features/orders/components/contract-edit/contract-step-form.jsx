@@ -1,17 +1,8 @@
-import { zodResolver } from '@hookform/resolvers/zod';
 import { Loader2, Save } from 'lucide-react';
-import { forwardRef, useEffect, useImperativeHandle, useMemo, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
-import { toast } from 'sonner';
+import { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
 import { Button } from '@/shared/components/ui/button';
-import { useTenantRoles } from '../../hooks/use-reference-data';
-import { applyFieldChange } from '../../lib/contract-form/field-changes';
+import { useContractStepForm } from '../../hooks/use-contract-step-form';
 import { isFieldVisible } from '../../lib/contract-form/field-visibility';
-import { buildEditorSavePayload } from '../../lib/contract-form/save-payload';
-import { buildContractFormSchema, describeValidationFailure, mapServerErrorsToFields } from '../../lib/contract-form/validation';
-import { buildContractFormSeed } from '../../lib/contract-form/seed-values';
-import { useSingleOrderContext } from '../details/single-order-context';
-import { useSectionEditor } from '../details/section-editor-context';
 import { ContractFormField } from './contract-form-field';
 
 const GRID_CLASS = 'grid grid-cols-1 items-end gap-4 md:grid-cols-2 lg:grid-cols-3';
@@ -21,7 +12,7 @@ function FieldGrid({ fields, renderField, values }) {
 }
 
 /**
- * Form that edits some fields of one contract step (react-hook-form + zod).
+ * Form that edits some fields of one contract step (react-hook-form + zod, see useContractStepForm).
  * Give it `fields` or titled `fieldGroups`; it seeds itself from the order, validates, sends only
  * the changed fields and keeps itself open after saving.
  *
@@ -42,7 +33,7 @@ export const ContractStepForm = forwardRef(function ContractStepForm(
     seedFromInitialValuesOnly = false,
     payloadExtras = null,
     onSave = null,
-    isSaving: isSavingProp = null,
+    isSaving = null,
     hideFooter = false,
     onFormChange = null,
     onSaved = null,
@@ -51,73 +42,12 @@ export const ContractStepForm = forwardRef(function ContractStepForm(
   ref,
 ) {
   const fields = useMemo(() => (fieldGroups?.length ? fieldGroups.flatMap((group) => group.fields) : (fieldsProp ?? [])), [fieldGroups, fieldsProp]);
-  const { orderData, updateContract, isSaving: contextSaving } = useSingleOrderContext();
-  const isSaving = isSavingProp ?? contextSaving;
-  const resetKey = useSectionEditor()?.resetKey ?? 0;
-
-  const { items: tenantRoles } = useTenantRoles(fields.some((field) => field.type === 'tenant-roles'));
-  const schema = useMemo(() => buildContractFormSchema(fields, tenantRoles), [fields, tenantRoles]);
-  const seed = useMemo(
-    () => buildContractFormSeed({ orderData, step, fields, initialValues, seedFromInitialValuesOnly }),
-    [orderData, step, fields, initialValues, seedFromInitialValuesOnly],
-  );
-
-  const form = useForm({ resolver: zodResolver(schema), defaultValues: seed });
-  const { control, getValues, setValue, setError, reset, handleSubmit, formState } = form;
-  const values = useWatch({ control });
-  // What the form had when it opened or was last saved; changes are computed against it.
-  const [initial, setInitial] = useState(seed);
-  const [seededWith, setSeededWith] = useState({ seed, resetKey });
-  if (seededWith.seed !== seed || seededWith.resetKey !== resetKey) {
-    setSeededWith({ seed, resetKey });
-    setInitial(seed);
-  }
-
-  // Re-seed when the order changes (after a save) or the dialog opens again.
-  useEffect(() => {
-    reset(seed);
-  }, [seed, resetKey, reset]);
+  const editor = useContractStepForm({ step, fields, initialValues, seedFromInitialValuesOnly, payloadExtras, onSave, isSaving, onSaved });
+  const { values, errors, orderData, resetKey, changeField, applyValues, save } = editor;
 
   useEffect(() => {
     onFormChange?.(values);
   }, [values, onFormChange]);
-
-  const applyValues = (next) => {
-    const current = getValues();
-    Object.entries(next).forEach(([key, value]) => {
-      if (current[key] !== value) setValue(key, value, { shouldDirty: true });
-    });
-  };
-  const changeField = (field, value) => applyValues(applyFieldChange(getValues(), field, value));
-
-  const submit = async (formValues) => {
-    const { payload, hasChanges } = buildEditorSavePayload({
-      fields,
-      step,
-      form: formValues,
-      initial,
-      payloadExtras,
-      customSave: typeof onSave === 'function',
-    });
-    if (!hasChanges) {
-      toast.info('لا توجد تغييرات للحفظ');
-      return;
-    }
-
-    try {
-      if (typeof onSave === 'function') await onSave(payload);
-      else await updateContract(payload);
-      setInitial({ ...formValues });
-      onSaved?.();
-    } catch (error) {
-      if (!error?.fieldErrors) return;
-      const fieldErrors = mapServerErrorsToFields(error.fieldErrors, fields, formValues);
-      Object.entries(fieldErrors).forEach(([key, message]) => setError(key, { type: 'server', message }));
-    }
-  };
-
-  const save = () =>
-    handleSubmit(submit, (errors) => toast.error(describeValidationFailure(Object.fromEntries(Object.entries(errors).map(([key, error]) => [key, error.message])))))();
 
   useImperativeHandle(ref, () => ({
     save,
@@ -129,7 +59,7 @@ export const ContractStepForm = forwardRef(function ContractStepForm(
       key={`${field.key}-${field.entity ?? ''}-${resetKey}`}
       field={field}
       values={values}
-      errors={formState.errors}
+      errors={errors}
       orderData={orderData}
       resetKey={resetKey}
       onChange={(value) => changeField(field, value)}
@@ -156,12 +86,12 @@ export const ContractStepForm = forwardRef(function ContractStepForm(
 
       {!hideFooter && (
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Button type="button" className="flex-1 bg-gold hover:bg-gold/90" size="lg" onClick={save} disabled={isSaving}>
-            {isSaving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+          <Button type="button" className="flex-1 bg-gold hover:bg-gold/90" size="lg" onClick={save} disabled={editor.isSaving}>
+            {editor.isSaving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
             حفظ التعديلات
           </Button>
           {onCancel && (
-            <Button type="button" variant="outline" size="lg" onClick={onCancel} disabled={isSaving}>
+            <Button type="button" variant="outline" size="lg" onClick={onCancel} disabled={editor.isSaving}>
               إلغاء
             </Button>
           )}

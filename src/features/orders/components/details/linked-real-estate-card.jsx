@@ -1,5 +1,6 @@
 import { Building2 } from 'lucide-react';
-import { AccentCard, Field } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { Field } from './detail-fields';
 
 const ESTATE_FIELDS = [
   ['رقم العقار', 'id'],

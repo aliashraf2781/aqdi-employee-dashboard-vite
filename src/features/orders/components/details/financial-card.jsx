@@ -1,7 +1,8 @@
 import { Check, Wallet } from 'lucide-react';
 import { cn } from '@/shared/lib/cn';
 import { getServiceQuote, isHiddenAmount, isQuotePaid } from '../../lib/financial-display';
-import { AccentCard, Field, Money } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { Field, Money } from './detail-fields';
 import { QuoteBreakdown, TotalPriceBreakdown } from './price-breakdown';
 import { SavedTerms } from './saved-terms';
 

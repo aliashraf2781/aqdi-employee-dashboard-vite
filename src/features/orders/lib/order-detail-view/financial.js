@@ -1,6 +1,6 @@
 import { getOrderFinancialStep } from '../order-detail-steps';
 import { pick } from '../pick';
-import { resolveOtherConditionsList, resolveTenantRoleDetails } from '../frontend-contract-fields';
+import { resolveOtherConditionsList, resolveTenantRoleDetails } from '../contract-terms-display';
 import { durationLabel, yesNoLabel } from './labels';
 import { mapContractPayments, mapTotalPrice } from './list-mappers';
 

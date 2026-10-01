@@ -1,5 +1,6 @@
 import { BadgeCheck, FileText, Receipt, Undo2 } from 'lucide-react';
-import { AccentCard, DownloadLink, Field, Money } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { DownloadLink, Field, Money } from './detail-fields';
 
 const hasValue = (value) => value != null && value !== '';
 

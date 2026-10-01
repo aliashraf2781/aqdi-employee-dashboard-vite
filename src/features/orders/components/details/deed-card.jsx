@@ -1,6 +1,7 @@
 import { FileText } from 'lucide-react';
 import { useState } from 'react';
-import { AccentCard, Field, FileRow } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { Field, FileRow } from './detail-fields';
 import { MediaPreview } from './media-preview';
 
 const dobWithType = (dob, type) => (dob ? (type ? `${dob} (${type})` : dob) : null);

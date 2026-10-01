@@ -1,5 +1,6 @@
 import { Building2, Home } from 'lucide-react';
-import { AccentCard, EditButton, GridField, GroupSection } from './detail-primitives';
+import { AccentCard, EditButton, GroupSection } from './detail-primitives';
+import { GridField } from './detail-fields';
 
 const UNIT_FIELDS = [
   ['number', 'رقم الوحدة'],

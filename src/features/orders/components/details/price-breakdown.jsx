@@ -1,5 +1,5 @@
 import { getQuoteDetails, isHiddenAmount } from '../../lib/financial-display';
-import { Money, MoneyField } from './detail-primitives';
+import { Money, MoneyField } from './detail-fields';
 
 /** Fees listed separately only when the quote's own detail lines do not already contain them. */
 const QUOTE_FEES = [

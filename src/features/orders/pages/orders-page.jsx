@@ -30,9 +30,7 @@ export function OrdersPage() {
       }),
       ...buildOrderColumns({ onView: page.openOrder, onPrint: page.printOrder }),
     ],
-    // `page.openOrder` / `page.printOrder` are recreated every render but only call stable functions.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [page.rows, selection.selectedIds, selection.toggle, selection.toggleMany],
+    [page.rows, page.openOrder, page.printOrder, selection.selectedIds, selection.toggle, selection.toggleMany],
   );
 
   return (

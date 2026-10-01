@@ -1,8 +1,8 @@
 import { useTenantRoles } from '../../hooks/use-reference-data';
 import { roleInputLabel } from '../../lib/financial-display';
-import { resolveOtherConditionsList, resolveTenantRoleDetails } from '../../lib/frontend-contract-fields';
+import { resolveOtherConditionsList, resolveTenantRoleDetails } from '../../lib/contract-terms-display';
 import { getOrderFinancialStep } from '../../lib/order-detail-steps';
-import { Field } from './detail-primitives';
+import { Field } from './detail-fields';
 
 function RolesList({ roles }) {
   return (

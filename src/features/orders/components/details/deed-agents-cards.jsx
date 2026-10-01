@@ -1,5 +1,6 @@
 import { UserRound } from 'lucide-react';
-import { AccentCard, Field } from './detail-primitives';
+import { AccentCard } from './detail-primitives';
+import { Field } from './detail-fields';
 
 /** The owner's legal agent (وكيل المالك), shown only when the order has one. */
 export function LegalAgentCard({ agent, onEdit }) {

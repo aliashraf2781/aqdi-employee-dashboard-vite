@@ -1,5 +1,6 @@
 import { UserRound } from 'lucide-react';
-import { AccentCard, CardBadge, DownloadLink, Field } from './detail-primitives';
+import { AccentCard, CardBadge } from './detail-primitives';
+import { DownloadLink, Field } from './detail-fields';
 
 /** Tenant data: person or company, contact details and the legal representative. */
 export function TenantCard({ tenant = {}, onEdit }) {

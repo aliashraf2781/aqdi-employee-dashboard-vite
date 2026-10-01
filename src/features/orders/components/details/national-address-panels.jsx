@@ -4,7 +4,8 @@ import { Button } from '@/shared/components/ui/button';
 import { copyToClipboard } from '@/shared/lib/clipboard';
 import { useDownloadMedia } from '../../hooks/use-download-media';
 import { getAddressImageUrl, getAddressMapsUrl, getTextAddressFields } from '../../lib/national-address-tabs';
-import { CardBadge, Field } from './detail-primitives';
+import { CardBadge } from './detail-primitives';
+import { Field } from './detail-fields';
 import { MediaPreview } from './media-preview';
 
 export function TextAddressPanel({ address }) {
