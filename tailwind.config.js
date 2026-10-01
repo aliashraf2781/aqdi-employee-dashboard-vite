@@ -44,6 +44,12 @@ export default {
           6: token('chart-6'),
         },
         neutral: { DEFAULT: token('neutral'), soft: token('neutral-soft') },
+        info: { DEFAULT: token('info'), soft: token('info-soft') },
+        violet: { DEFAULT: token('violet'), soft: token('violet-soft') },
+        gold: { DEFAULT: token('gold'), soft: token('gold-soft') },
+        orange: { DEFAULT: token('orange'), soft: token('orange-soft') },
+        whatsapp: token('whatsapp'),
+        refunded: { DEFAULT: token('refunded'), soft: token('refunded-soft') },
         sidebar: {
           DEFAULT: token('sidebar'),
           hover: token('sidebar-hover'),
@@ -61,6 +67,7 @@ export default {
         card: 'var(--shadow-card)',
       },
       minWidth: { 'table-sm': '32rem', 'table-md': '40rem', 'table-lg': '64rem' },
+      maxHeight: { dialog: '90vh' },
       maxWidth: {
         'dialog-sm': '24rem',
         'dialog-md': '32rem',
