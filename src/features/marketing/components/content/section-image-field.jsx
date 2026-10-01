@@ -1,6 +1,6 @@
 import { useController } from 'react-hook-form';
 import { toast } from 'sonner';
-import { FileUploadField } from '@/shared/components/file-upload-field';
+import { FileUploadField } from '@/shared/components/ui/file-upload-field';
 import { getFileTypeError } from '@/features/marketing/lib/file-types';
 
 /**

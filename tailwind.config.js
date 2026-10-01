@@ -54,6 +54,7 @@ export default {
           DEFAULT: token('sidebar'),
           hover: token('sidebar-hover'),
           dark: token('sidebar-dark'),
+          active: token('sidebar-active'),
           foreground: token('sidebar-foreground'),
         },
       },

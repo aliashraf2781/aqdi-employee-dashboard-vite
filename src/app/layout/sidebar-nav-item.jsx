@@ -23,7 +23,7 @@ export function SidebarNavItem({ feature, collapsed }) {
         cn(
           'flex h-11 items-center gap-2.5 rounded-xl px-3.5 text-sm font-medium transition-colors',
           isActive
-            ? 'bg-sidebar-foreground/10 text-accent-foreground'
+            ? 'bg-sidebar-foreground/10 text-sidebar-active'
             : 'text-sidebar-foreground hover:bg-sidebar-hover',
           collapsed && 'mx-auto size-11 justify-center px-0',
         )

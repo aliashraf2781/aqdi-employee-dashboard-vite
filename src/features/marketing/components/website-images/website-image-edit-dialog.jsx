@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
-import { FileUploadField } from '@/shared/components/file-upload-field';
+import { FileUploadField } from '@/shared/components/ui/file-upload-field';
 import { FormDialog } from '@/shared/components/form-dialog';
-import { CheckboxField } from '@/shared/components/checkbox-field';
+import { CheckboxField } from '@/shared/components/ui/checkbox-field';
 import { TextField } from '@/shared/components/ui/text-field';
 import { BilingualField } from '@/features/marketing/components/website-images/bilingual-field';
 import { getFileTypeError } from '@/features/marketing/lib/file-types';

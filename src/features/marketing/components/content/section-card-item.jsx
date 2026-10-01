@@ -1,7 +1,7 @@
 import { Trash2 } from 'lucide-react';
 import { useWatch } from 'react-hook-form';
 import { Button } from '@/shared/components/ui/button';
-import { CheckboxField } from '@/shared/components/checkbox-field';
+import { CheckboxField } from '@/shared/components/ui/checkbox-field';
 import { CardFeaturesEditor } from '@/features/marketing/components/content/card-features-editor';
 import { SectionImageField } from '@/features/marketing/components/content/section-image-field';
 import { SectionTextFields } from '@/features/marketing/components/content/section-text-fields';
