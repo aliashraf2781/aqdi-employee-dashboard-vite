@@ -1,4 +1,5 @@
 import { clientsFeature } from '@/features/clients/manifest';
+import { contractSettingsFeature } from '@/features/contract-settings/manifest';
 import { employeesFeature } from '@/features/employees/manifest';
 import { invoicesFeature } from '@/features/invoices/manifest';
 import { contentRedirectFeature, marketingFeature } from '@/features/marketing';
@@ -23,6 +24,7 @@ export const features = [
   contentRedirectFeature,
   reportsFeature,
   settingsFeature,
+  contractSettingsFeature,
   ordersFeature,
   invoicesFeature,
   usersFeature,
