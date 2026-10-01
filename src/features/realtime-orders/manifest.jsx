@@ -1,5 +1,6 @@
 import { Radio } from 'lucide-react';
 import { ComingSoonPage } from '@/shared/components/coming-soon-page';
+import { useUnreceivedOrdersCount } from '@/features/orders';
 import { SECTION_GROUPS } from '@/features/permissions';
 
 /**
@@ -14,5 +15,6 @@ export const realtimeOrdersFeature = {
   icon: Radio,
   section: SECTION_GROUPS.realtimeOrders,
   navGroup: 'main',
+  useBadgeCount: useUnreceivedOrdersCount,
   routes: [{ index: true, element: <ComingSoonPage title="الطلبات مباشر" /> }],
 };
