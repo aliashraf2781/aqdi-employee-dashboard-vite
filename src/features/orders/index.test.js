@@ -21,6 +21,7 @@ const PUBLIC_API = [
   'SendOrderSmsDialog',
   'useOrdersList',
   'useOrdersListFilters',
+  'useOrdersPage',
   'OrdersToolbar',
   'OrderActionsMenu',
   'mapTableOrderRow',

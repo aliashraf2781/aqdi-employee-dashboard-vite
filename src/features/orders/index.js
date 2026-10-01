@@ -85,6 +85,8 @@ export { fetchAdminOrders, fetchAllPages, fetchOrder, fetchOrdersTotalByStatus, 
 export { buildAdminOrdersParams, extractOrdersPayload } from './lib/admin-orders-query';
 /** Search/filter/paging state of an orders table and the API params built from it. */
 export { useOrdersListFilters } from './hooks/use-orders-list-filters';
+/** Everything an orders table needs (filters, rows, selection, table prefs, export, print). `lockedFilter` fixes a pill, e.g. 'returned'. */
+export { useOrdersPage } from './hooks/use-orders-page';
 export { ALL_ORDERS_FILTER_PILLS, CONTRACT_TYPE_OPTIONS, resolveListFilters, toggleFilterPill } from './lib/orders-filters';
 export { OrdersToolbar } from './components/orders-list/orders-toolbar';
 export { FilterPills } from './components/orders-list/filter-pills';

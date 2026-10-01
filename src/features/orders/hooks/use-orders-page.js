@@ -76,6 +76,7 @@ export function useOrdersPage({ lockedFilter = null, exportFilename = 'جميع-
     tablePreferences,
     batchPrint,
     exporter,
+    exportParams,
     openOrder,
     printOrder,
   };
